@@ -56,12 +56,14 @@ namespace WeatherStationTests
         [InlineData(212, 100)]
         public void FahrenheitInCelsius_AlwaysReturnGoodValue(double F, double expected)
         {
+            //Calcule https://www.tutorialspoint.com/Chash-Program-to-Convert-Fahrenheit-to-Celsius
+
             // Arrange
-
+            double result;
             // Act       
-
+            result = Math.Round((F - 32) * 5 / 9);
             // Assert
-
+            Assert.Equal(expected, result);
             /// TODO : git commit -a -m "T02 FahrenheitInCelsius_AlwaysReturnGoodValue : Done"
         }
 
