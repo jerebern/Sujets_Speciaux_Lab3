@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.Text;
 using WeatherApp.ViewModels;
 using Xunit;
-
+//Rappel Arrange Act Assert http://wiki.c2.com/?ArrangeActAssert
 namespace WeatherStationTests
 {
     public class TemperatureViewModelTests : IDisposable
@@ -28,12 +28,16 @@ namespace WeatherStationTests
         [InlineData(100, 212)]
         public void CelsiusInFahrenheit_AlwaysReturnGoodValue(double C, double expected)
         {
+            //Calcule https://www.tutorialspoint.com/Chash-Program-to-perform-Celsius-to-Fahrenheit-Conversion
+
             // Arrange
+            double result;
 
             // Act       
-
+            result = Math.Round((C * 9) / 5 + 32);
             // Assert
-
+           
+            Assert.Equal(expected, result);
             /// TODO : git commit -a -m "T01 CelsisInFahrenheit_AlwaysReturnGoodValue : Done"
         }
 
