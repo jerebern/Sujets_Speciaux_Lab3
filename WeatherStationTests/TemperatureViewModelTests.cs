@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Text;
 using WeatherApp.ViewModels;
 using Xunit;
+using Xunit.Sdk;
 //Rappel Arrange Act Assert http://wiki.c2.com/?ArrangeActAssert
 namespace WeatherStationTests
 {
@@ -79,9 +80,7 @@ namespace WeatherStationTests
             // Act       
 
             // Assert
-            
-            
-
+            Assert.Throws<NullException>(() => _sut.GetTempCommand.Execute(""));
             /// TODO : git commit -a -m "T03 GetTempCommand_ExecuteIfNullService_ShouldThrowNullException : Done"
         }
 
@@ -99,6 +98,7 @@ namespace WeatherStationTests
             // Assert
 
             /// TODO : git commit -a -m "T04 CanGetTemp_WhenServiceIsNull_ReturnsFalse : Done"
+            
         }
 
         /// <summary>
@@ -125,6 +125,7 @@ namespace WeatherStationTests
         public void SetTemperatureService_WhenExecuted_TemperatureServiceIsNotNull()
         {
             // Arrange
+
 
             // Act       
 
