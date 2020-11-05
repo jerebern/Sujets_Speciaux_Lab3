@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Moq;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
+using WeatherApp.Services;
 using WeatherApp.ViewModels;
 using Xunit;
 using Xunit.Sdk;
@@ -111,11 +113,14 @@ namespace WeatherStationTests
         public void CanGetTemp_WhenServiceIsSet_ReturnsTrue()
         {
             // Arrange
-
-            // Act       
+            Mock<ITemperatureService> _mock = new Mock<ITemperatureService>();
+            // Act 
+            _sut.SetTemperatureService(_mock.Object);
+            bool expected = true;
+            var actual = _sut.CanGetTemp("");
 
             // Assert
-
+            Assert.Equal(actual, expected);
             /// TODO : git commit -a -m "T05 CanGetTemp_WhenServiceIsSet_ReturnsTrue : Done"
         }
 
