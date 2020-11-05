@@ -23,25 +23,25 @@ namespace WeatherApp.ViewModels
         }
 
 
-       private void SetTemperatureService(ITemperatureService temperature)
+       public void SetTemperatureService(ITemperatureService temperature)
         {
             this.TemperatureService = temperature;
         }
-      private double CelsiusInFahrenheit(double c)
+      public static double CelsiusInFahrenheit(double c)
         {
             //TODO to change
             return c;
         }
-        private double FahrenheitInCelsiu(double f)
+        public static double FahrenheitInCelsiu(double f)
         {
             //TODO to change
             return f;
         }
-        private async void GetTemp(string obj)
+        public async void GetTemp(string obj)
         {
             CurrentTemp = await TemperatureService.GetTempAsync();
         }
-        private bool CanGetTemp(string obj)
+        public bool CanGetTemp(string obj)
         {
             if(TemperatureService != null)
             {

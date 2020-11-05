@@ -62,7 +62,7 @@ namespace WeatherStationTests
             // Arrange
             double result;
             // Act       
-            result = Math.Round((F - 32) * 5 / 9);
+            result = (F - 32) * 5 / 9;
             // Assert
             Assert.Equal(expected, result);
             /// TODO : git commit -a -m "T02 FahrenheitInCelsius_AlwaysReturnGoodValue : Done"
@@ -93,10 +93,12 @@ namespace WeatherStationTests
         {
             // Arrange
 
-            // Act       
+            // Act
+            bool expected = false;
+            var actual = _sut.CanGetTemp("");
 
             // Assert
-
+            Assert.Equal(actual, expected);
             /// TODO : git commit -a -m "T04 CanGetTemp_WhenServiceIsNull_ReturnsFalse : Done"
             
         }
