@@ -36,13 +36,13 @@ namespace WeatherStationTests
             //Calcule https://www.tutorialspoint.com/Chash-Program-to-perform-Celsius-to-Fahrenheit-Conversion
 
             // Arrange
-            double result;
+            double actual;
 
             // Act       
-            result = Math.Round(((C * 9) / 5 + 32),1);
+            actual = Math.Round(((C * 9) / 5 + 32),1);
             // Assert
            
-            Assert.Equal(expected, result);
+            Assert.Equal(expected, actual);
             /// TODO : git commit -a -m "T01 CelsisInFahrenheit_AlwaysReturnGoodValue : Done"
         }
 
