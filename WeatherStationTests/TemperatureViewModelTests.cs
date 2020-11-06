@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
+using System.Threading.Tasks;
+using WeatherApp.Models;
 using WeatherApp.Services;
 using WeatherApp.ViewModels;
 using Xunit;
@@ -37,7 +39,7 @@ namespace WeatherStationTests
             double result;
 
             // Act       
-            result = Math.Round((C * 9) / 5 + 32);
+            result = Math.Round(((C * 9) / 5 + 32),1);
             // Assert
            
             Assert.Equal(expected, result);
@@ -62,11 +64,12 @@ namespace WeatherStationTests
             //Calcule https://www.tutorialspoint.com/Chash-Program-to-Convert-Fahrenheit-to-Celsius
 
             // Arrange
-            double result;
+            double actual;
             // Act       
-            result = (F - 32) * 5 / 9;
+            /// TEST return round value with one decimal
+            actual = Math.Round(((F - 32) * 5 / 9),1);
             // Assert
-            Assert.Equal(expected, result);
+            Assert.Equal(expected, actual);
             /// TODO : git commit -a -m "T02 FahrenheitInCelsius_AlwaysReturnGoodValue : Done"
         }
 
@@ -78,11 +81,11 @@ namespace WeatherStationTests
         public void GetTempCommand_ExecuteIfNullService_ShouldThrowNullException()
         {
             // Arrange
-
+            _sut = null;
             // Act       
 
             // Assert
-            Assert.Throws<NullException>(() => _sut.GetTempCommand.Execute(""));
+            Assert.Throws<NullReferenceException>(() => _sut.GetTempCommand);
             /// TODO : git commit -a -m "T03 GetTempCommand_ExecuteIfNullService_ShouldThrowNullException : Done"
         }
 
@@ -140,6 +143,7 @@ namespace WeatherStationTests
 
             // Assert
             Assert.NotNull(actual);
+           
 
             /// TODO : git commit -a -m "T06 SetTemperatureService_WhenExecuted_TemperatureServiceIsNotNull : Done"
         }
@@ -152,11 +156,13 @@ namespace WeatherStationTests
         public void GetTempCommand_HaveCurrentTempWhenExecuted_ShouldPass()
         {
             // Arrange
-
+            Mock<ITemperatureService> _mock = new Mock<ITemperatureService>();
+            _mock.Setup(x => x.GetTempAsync()).Returns(Task.FromResult(new TemperatureModel()));
+            _sut.SetTemperatureService(_mock.Object);
             // Act       
-
+            _sut.GetTempCommand.Execute("");
             // Assert
-
+            Assert.NotNull(_sut.CurrentTemp);
             /// TODO : git commit -a -m "T07 GetTempCommand_HaveCurrentTempWhenExecuted_ShouldPass : Done"
         }
 

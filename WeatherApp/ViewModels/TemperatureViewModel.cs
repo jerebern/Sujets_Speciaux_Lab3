@@ -29,13 +29,13 @@ namespace WeatherApp.ViewModels
         }
       public static double CelsiusInFahrenheit(double c)
         {
-            //TODO to change
-            return c;
+
+            return Math.Round(((c * 9) / 5 + 32), 1);
         }
         public static double FahrenheitInCelsiu(double f)
         {
-            //TODO to change
-            return f;
+
+            return Math.Round(((f - 32) * 5 / 9), 1); ;
         }
         public async void GetTemp(string obj)
         {
@@ -43,15 +43,10 @@ namespace WeatherApp.ViewModels
         }
         public bool CanGetTemp(string obj)
         {
-            if(TemperatureService != null)
-            {
-                return true;
-            }
-            else
-            {
+            if(TemperatureService == null)
                 return false;
-            }
-
+            else
+                return true;
         }
     }
 }
